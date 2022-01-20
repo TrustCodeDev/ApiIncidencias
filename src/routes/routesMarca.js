@@ -18,6 +18,6 @@ router.put("/:id", marca.update);
 router.delete("/:id", marca.delete);
 
 // Delete all Marcas
-router.delete("/", marca.deleteAll);
+//router.delete("/", marca.deleteAll);
 
 module.exports = router 
