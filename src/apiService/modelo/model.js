@@ -1,22 +1,22 @@
 const { Logger } = require("../../loaders/logger");
 const { sql } = require("../../services/mysql");
-const Utils = require("../../util");
 
 
-const Marca = function (marca) {
-    this.id_marca = marca.id_marca,
-    this.nombre = marca.nombre,
-    this.eliminado = marca.eliminado,
+const Modelo = function (modelo) {
+    this.id_modelo = modelo.id_modelo,
+    this.nombre = modelo.nombre,
+    this.eliminado = modelo.eliminado,
     //this.f_create = Utils.getCurrentDateTime,
     //this.f_update = Utils.getCurrentDateTime,
-    this.u_create = marca.u_create,
-    this.u_update = marca.u_update
+    this.u_create = modelo.u_create,
+    this.u_update = modelo.u_update,
+    this.marca_id_marca = modelo.id_marca
 };
 
-Marca.create = (newMarca, result) => {
-
-  const query = `INSERT INTO marca(nombre,eliminado,f_create,f_update,u_create,u_update) 
-                             values ('${newMarca.nombre}', '${newMarca.eliminado}', NOW(), NOW(), '${newMarca.u_create}', '${newMarca.u_update}');`
+Modelo.create = (newModelo, result) => {
+  console.log("create",newModelo);
+  const query = `INSERT INTO modelo(nombre,eliminado,f_create,f_update,u_create,u_update,marca_id_marca) 
+                             values ('${newModelo.nombre}', '${newModelo.eliminado}', NOW(), NOW(), '${newModelo.u_create}', '${newModelo.u_update}',${newModelo.marca_id_marca});`
 
   sql.query(query, (err, res) => {
     if (err) {
@@ -25,20 +25,20 @@ Marca.create = (newMarca, result) => {
       return;
     }
 
-    Logger.info("created marca: ", { id: res.insertId, ...newMarca });
+    Logger.info("created modelo: ", { id: res.insertId, ...newModelo });
     result(null, { id: res.insertId, ...newMarca });
   });
 };
 
-Marca.findByName = (name, result) => {
-  sql.query(`select count(*) as result from marca where nombre = ?`, name, (err, res) => {
+Modelo.findByName = (name, result) => {
+  sql.query(`select count(*) as result from modelo where nombre = ?`, name, (err, res) => {
     if (err) {
       Logger.error('error: ', err)
       result(err, null)
       return
     }
 
-    Logger.info("marca: ", res[0]);
+    Logger.info("modelo: ", res[0]);
     result(null, res[0].result);
     return
 
@@ -46,8 +46,8 @@ Marca.findByName = (name, result) => {
   })
 }
 
-Marca.findById = (id, result) => {
-  sql.query(`SELECT * FROM marca WHERE id_marca = ${id} and eliminado = 0`, (err, res) => {
+Modelo.findById = (id, result) => {
+  sql.query(`SELECT * FROM modelo WHERE id_modelo = ${id} and eliminado = 0`, (err, res) => {
     if (err) {
       Logger.error("error: ", err);
       result(err, null);
@@ -55,7 +55,7 @@ Marca.findById = (id, result) => {
     }
 
     if (res.length) {
-      Logger.info("found marca: ", res[0]);
+      Logger.info("found modelo: ", res[0]);
       result(null, res[0]);
       return;
     }
@@ -65,8 +65,8 @@ Marca.findById = (id, result) => {
   });
 };
 
-Marca.getAll = (result) => {
-  let query = "SELECT * FROM marca WHERE eliminado = 0";
+Modelo.getAll = (result) => {
+  let query = "SELECT * FROM modelo WHERE eliminado = 0";
 
   /*if (nombre) {
     query += ` WHERE nombre LIKE '%${nombre}%'`;
@@ -81,15 +81,15 @@ Marca.getAll = (result) => {
 
 
     result(null, res);
-    Logger.info("marcas: ", res);
+    Logger.info("modelo: ", res);
   });
 };
 
-Marca.updateById = (id, marca, result) => {
-  sql.query("UPDATE marca SET nombre = ?, eliminado = ?, f_update = NOW(), u_update = ? WHERE id_marca = ?",
-    [marca.nombre, marca.eliminado, marca.u_update, id],
+Modelo.updateById = (id, modelo, result) => {
+  sql.query("UPDATE modelo SET nombre = ?, eliminado = ?, f_update = NOW(), u_update = ? WHERE id_modelo = ?",
+    [modelo.nombre, modelo.eliminado, modelo.u_update, id],
     (err, res) => {
-      console.log(err)
+
       if (err) {
         Logger.error("error: ", err);
         result(null, err);
@@ -102,14 +102,14 @@ Marca.updateById = (id, marca, result) => {
         return;
       }
 
-      Logger.info("updated marca: ", { id: id, ...marca });
-      result(null, { id: id, ...marca });
+      Logger.info("updated modelo: ", { id: id, ...modelo });
+      result(null, { id: id, ...modelo });
     }
   );
 };
 
-Marca.remove = (id, result) => {
-  sql.query("UPDATE marca SET eliminado = 1 WHERE id_marca = ?", id, (err, res) => {
+Modelo.remove = (id, result) => {
+  sql.query("UPDATE modelo SET eliminado = 1 WHERE id_modelo = ?", id, (err, res) => {
     if (err) {
       Logger.error("error: ", err);
       result(null, err);
@@ -122,7 +122,7 @@ Marca.remove = (id, result) => {
       return;
     }
 
-    Logger.info("deleted marca with id: ", id);
+    Logger.info("deleted modelo with id: ", id);
     result(null, res);
   });
 };
@@ -140,4 +140,4 @@ Marca.remove = (id, result) => {
   });
 };*/
 
-module.exports = Marca;
+module.exports = Modelo;
