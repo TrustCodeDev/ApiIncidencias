@@ -1,5 +1,6 @@
 const { Logger } = require("../../loaders/logger");
 const Modelo = require("./model");
+const { findById } = require('../marca/model');
 
 
 exports.create = (req, res) => {
@@ -15,8 +16,14 @@ exports.create = (req, res) => {
     eliminado: req.body.eliminado,
     u_create: req.body.u_create,
     u_update: req.body.u_update,
-    marca_id_marca: req.body.id_marca
+    id_marca: req.body.id_marca
   });
+
+  //verificar si el id de la marca existe
+  findById(modelo.id_marca, (err,data) =>{
+    //si existe
+    //el codigo 
+  })
 
   Modelo.findByName(modelo.nombre, (err, data) => {
     if (err) {

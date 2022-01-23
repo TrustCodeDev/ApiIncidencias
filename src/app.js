@@ -5,8 +5,6 @@ const config = require('./config/index');
 const { Logger } = require('./loaders/logger');
 
 
-//import Logger from './loaders/logger';
-
 async function startServer() {
     const app = express();
 
