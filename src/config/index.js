@@ -13,6 +13,10 @@ const config = {
 
   applicationName: process.env.APPLICATION_NAME,
 
+  applicationDescription: process.env.APPLICATION_DESCRIPCION,
+
+  applicationVersion: process.env.npm_package_version,
+
   /**
    * Your favorite port
    */

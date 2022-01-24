@@ -1,5 +1,6 @@
 const { Logger } = require("../../loaders/logger");
 const Modelo = require("./model");
+const { findById } = require('../marca/model');
 
 
 exports.create = (req, res) => {
@@ -15,32 +16,48 @@ exports.create = (req, res) => {
     eliminado: req.body.eliminado,
     u_create: req.body.u_create,
     u_update: req.body.u_update,
-    marca_id_marca: req.body.id_marca
+    id_marca: req.body.id_marca
   });
 
-  Modelo.findByName(modelo.nombre, (err, data) => {
+  //verificar si el id de la marca existe
+  findById(modelo.id_marca, (err, data) => {
     if (err) {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while validate the Modelo."
-      })
-    }
-
-    if (data === 1) {
-      res.send({
-        message: "El modelo que intenas registrar ya existe, verifique los datos"
-      })
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Marca with id ${modelo.id_marca}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Marca with id " + modelo.id_marca
+        });
+      }
     } else {
-      Modelo.create(modelo, (err, data) => {
-        if (err)
+      //si existe el id de la marca
+      Modelo.findByName(modelo.nombre, (err, data) => {
+        if (err) {
           res.status(500).send({
             message:
-              err.message || "Some error occurred while creating the Modelo."
+              err.message || "Some error occurred while validate the Modelo."
+          })
+        }
+
+        if (data === 1) {
+          res.send({
+            message: "El modelo que intenas registrar ya existe, verifique los datos"
+          })
+        } else {
+          Modelo.create(modelo, (err, data) => {
+            if (err)
+              res.status(500).send({
+                message:
+                  err.message || "Some error occurred while creating the Modelo."
+              });
+            else res.send(data);
           });
-        else res.send(data);
+        }
       });
     }
-  });
+  })
 };
 
 exports.findAll = (req, res) => {
@@ -79,25 +96,57 @@ exports.update = (req, res) => {
     });
   }
 
-  Logger.info(req.body);
+  //validate if exists modelo to update
+  Modelo.findById(req.params.id, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Modelo with id ${req.params.id}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Marca with id " + req.params.id
+        });
+      }
+    } else res.send(data);
+  });
 
-  Modelo.updateById(
-    req.params.id,
-    new Modelo(req.body),
-    (err, data) => {
-      if (err) {
-        if (err.kind === "not_found") {
-          res.status(404).send({
-            message: `Not found Modelo with id ${req.params.id}.`
-          });
-        } else {
-          res.status(500).send({
-            message: "Error updating Modelo with id " + req.params.id
-          });
+  //validar la marca a actualizar
+  findById(modelo.id_marca, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Marca with id ${modelo.id_marca}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Marca with id " + modelo.id_marca
+        });
+      }
+    } else {
+      Logger.info(req.body);
+
+      Modelo.updateById(
+        req.params.id,
+        new Modelo(req.body),
+        (err, data) => {
+          if (err) {
+            if (err.kind === "not_found") {
+              res.status(404).send({
+                message: `Not found Modelo with id ${req.params.id}.`
+              });
+            } else {
+              res.status(500).send({
+                message: "Error updating Modelo with id " + req.params.id
+              });
+            }
+          } else {
+            res.send(data);
+          }
         }
-      } else res.send(data);
+      );
     }
-  );
+  })
 };
 
 exports.delete = (req, res) => {

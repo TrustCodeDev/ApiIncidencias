@@ -10,13 +10,13 @@ const Modelo = function (modelo) {
     //this.f_update = Utils.getCurrentDateTime,
     this.u_create = modelo.u_create,
     this.u_update = modelo.u_update,
-    this.marca_id_marca = modelo.id_marca
+    this.id_marca = modelo.id_marca
 };
 
 Modelo.create = (newModelo, result) => {
-  console.log("create",newModelo);
+ 
   const query = `INSERT INTO modelo(nombre,eliminado,f_create,f_update,u_create,u_update,marca_id_marca) 
-                             values ('${newModelo.nombre}', '${newModelo.eliminado}', NOW(), NOW(), '${newModelo.u_create}', '${newModelo.u_update}',${newModelo.marca_id_marca});`
+                             values ('${newModelo.nombre}', '${newModelo.eliminado}', NOW(), NOW(), '${newModelo.u_create}', '${newModelo.u_update}',${newModelo.id_marca});`
 
   sql.query(query, (err, res) => {
     if (err) {
@@ -26,7 +26,7 @@ Modelo.create = (newModelo, result) => {
     }
 
     Logger.info("created modelo: ", { id: res.insertId, ...newModelo });
-    result(null, { id: res.insertId, ...newMarca });
+    result(null, { id: res.insertId, ...newModelo });
   });
 };
 
@@ -86,8 +86,8 @@ Modelo.getAll = (result) => {
 };
 
 Modelo.updateById = (id, modelo, result) => {
-  sql.query("UPDATE modelo SET nombre = ?, eliminado = ?, f_update = NOW(), u_update = ? WHERE id_modelo = ?",
-    [modelo.nombre, modelo.eliminado, modelo.u_update, id],
+  sql.query("UPDATE modelo SET nombre = ?, eliminado = ?, f_update = NOW(), u_update = ?, marca_id_marca = ? WHERE id_modelo = ?",
+    [modelo.nombre, modelo.eliminado, modelo.u_update, modelo.id_marca, id],
     (err, res) => {
 
       if (err) {

@@ -2,6 +2,40 @@ const express = require('express');
 const cors = require('cors');
 //const { routes } = require('../routes/routes')
 const config = require('../config');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+//const swaggerOptions = require('../doc/swagger-spec');
+
+const path = require('path')
+
+const swaggerOptions = {
+  swaggerDefinition: {
+      openapi: "3.0.0",
+      info: {
+          title: `${config.applicationName} API`,
+          description: `${config.applicationDescription}`,
+          version: `${config.applicationVersion}`,
+          termsOfService: "http://swagger.io/terms/",
+          contact: {
+              email: "trustcodesac@gmail.com"
+          },
+          license: {
+              name: "Apache 2.0",
+              url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+          },
+          contact: {
+              name: 'trustcode'
+          },
+          server: [`http:localhost:${config.port}`]
+      }
+  },
+  // ['.routes/*.js']
+  apis: [
+    `${path.join(__dirname,"../routes/routesMarca.js")}`,
+    `${path.join(__dirname,"../routes/routesModelo.js")}`
+  ]
+};
+
 
 const expressUp =  ( app ) => {
     /**
@@ -31,11 +65,15 @@ const expressUp =  ( app ) => {
   
     // Transforms the raw string of req.body into json
     app.use(express.json());
+
+    // API Documentation
+    const swaggerDocs = swaggerJsDoc(swaggerOptions);
+    app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
     // Load API routes
     //app.use(config.api.prefix, routes(app));
     require("../routes/index.js")(app);
   
-    // API Documentation
     /*app.use(OpticMiddleware({
         enabled: process.env.NODE_ENV !== 'production',
     }));*/
