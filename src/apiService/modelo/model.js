@@ -86,8 +86,8 @@ Modelo.getAll = (result) => {
 };
 
 Modelo.updateById = (id, modelo, result) => {
-  sql.query("UPDATE modelo SET nombre = ?, eliminado = ?, f_update = NOW(), u_update = ? WHERE id_modelo = ?",
-    [modelo.nombre, modelo.eliminado, modelo.u_update, id],
+  sql.query("UPDATE modelo SET nombre = ?, eliminado = ?, f_update = NOW(), u_update = ?, marca_id_marca = ? WHERE id_modelo = ?",
+    [modelo.nombre, modelo.eliminado, modelo.u_update, modelo.id_marca, id],
     (err, res) => {
 
       if (err) {
