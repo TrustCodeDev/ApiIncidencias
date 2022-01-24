@@ -1,4 +1,3 @@
-
 const router = require('express').Router();
 const marca = require("../apiService/marca/controller");
 const swaggerJsDoc = require('swagger-jsdoc');
@@ -162,4 +161,4 @@ router.put("/update/:id", marca.update);
  */
 router.delete("/delete/:id", marca.delete);
 
-module.exports = router 
+module.exports = router;
