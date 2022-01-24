@@ -17,7 +17,4 @@ router.put("/:id", marca.update);
 // Delete a Marca with id
 router.delete("/:id", marca.delete);
 
-// Delete all Marcas
-router.delete("/", marca.deleteAll);
-
 module.exports = router 
