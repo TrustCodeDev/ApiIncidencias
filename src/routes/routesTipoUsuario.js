@@ -1,22 +1,24 @@
 const router = require('express').Router();
-const marca = require("../apiService/marca/controller");
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
+const tipo_usuario = require("../apiService/tipo_usuario/controller");
+
 
 /**
  * @swagger
  * 
  * components:
  *  schemas:
- *    marca:
+ *    tipo_usuario:
  *      type: object
  *      properties:
- *        id_marca:
+ *        id_tipo_usuario:
  *          type: integer
- *          description: id autogenerado de la marca
- *        nombre:
+ *          description: id autogenerado del tipo_usuario
+ *        descripcion:
  *          type: string
- *          description: nombre de la marca 
+ *          description: descripcion del tipo_usuario
+ *        estado:
+ *          type: string
+ *          description: estado del tipo_usuario 
  *        eliminado:
  *          type: integer
  *          description: indica 1 si esta inactivo 0 si esta activo
@@ -33,47 +35,47 @@ const swaggerUi = require('swagger-ui-express');
  *          type: string
  *          description: usuario de actualizacion
  *      required:
- *        - nombre
+ *        - descripcion
+ *        - estado
  *        - eliminado
  *        - u_create
  *      example:
- *        nombre: HP
- *        eliminado: 2
+ *        descripcion: Administrador
+ *        estado: Activo
+ *        eliminado: 0
  *        f_create: 2022-01-18 22:43:09
  *        f_update: 2022-01-18 22:43:09
- *        u_create: rbueno
- *        u_update: admin
+ *        u_create: rbalbis
+ *        u_update: rbalbis
  */
-
-
-
 
 
 /**
  * @swagger
- * /marca/create:
+ * /tipo_usuario/create:
  *   post:
- *     summary: crear una marca
- *     tags: [Marca]
+ *     summary: crear un tipo_usuario
+ *     tags: [Tipo Usuario]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             $ref: '#/components/schemas/marca'
+ *             $ref: '#/components/schemas/tipo_usuario'
  *     responses:
  *       200:
- *         description: marca creado satisfactoriamente
+ *         description: tipo_usuario creado satisfactoriamente
  */
-router.post("/create/", marca.create);
+router.post("/create/", tipo_usuario.create);
+
 
 /**
  * @swagger
- * /marca/findAll:
+ * /tipo_usuario/findAll:
  *   get:
- *     summary: listar las marcas
- *     tags: [Marca]
+ *     summary: listar los tipo_usuario
+ *     tags: [Tipo Usuario]
  *     responses:
  *       200:
  *         description: listado de informacion satisfactoria
@@ -82,83 +84,87 @@ router.post("/create/", marca.create);
  *               schema:
  *                 type: array
  *                 items:
- *                   $ref: '#/components/schemas/marca' 
+ *                   $ref: '#/components/schemas/tipo_usuario' 
  */
-router.get("/findAll", marca.findAll);
+router.get("/findAll", tipo_usuario.findAll);
+
 
 /**
  * @swagger
- * /marca/findOne/{id}:
+ * /tipo_usuario/findOne/{id}:
  *   get:
- *     summary: listar una marca
- *     tags: [Marca]
+ *     summary: listar un tipo_usuario
+ *     tags: [Tipo Usuario]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema: 
  *           type: string
  *         required: true
- *         description: id de la marca
+ *         description: id del tipo_usuario
  *     responses:
  *       200:
- *         description: marca encontrada
+ *         description: tipo_usuario encontrado
  *         content:
  *            application/json:
  *               schema:
  *                 type: object
- *                 $ref: '#/components/schemas/marca'
+ *                 $ref: '#/components/schemas/tipo_usuario'
  *       404:
- *         description: marca not found
+ *         description: tipo_usuario not found
  */
-router.get("/findOne/:id", marca.findOne);
+router.get("/findOne/:id", tipo_usuario.findOne);
+
 
 /**
  * @swagger
- * /marca/update/{id}:
+ * /tipo_usuario/update/{id}:
  *   put:
- *     summary: actualizar una marca en especifico
- *     tags: [Marca]
+ *     summary: actualizar un tipo_usuario en especifico
+ *     tags: [Tipo Usuario]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema: 
  *           type: string
  *         required: true
- *         description: id de la marca
+ *         description: id del tipo_usuario
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             $ref: '#/components/schemas/marca'
+ *             $ref: '#/components/schemas/tipo_usuario'
  *     responses:
  *       200:
- *         description: se actualizo la marca satisfactoriamente
+ *         description: se actualizo el tipo_usuario satisfactoriamente
  *       404:
- *         description: marca not found
+ *         description: tipo_usuario not found
  */
-router.put("/update/:id", marca.update);
+router.put("/update/:id", tipo_usuario.update);
+
 
 /**
  * @swagger
- * /marca/delete/{id}:
+ * /tipo_usuario/delete/{id}:
  *   delete:
- *     summary: eliminar una marca
- *     tags: [Marca]
+ *     summary: eliminar un tipo_usuario
+ *     tags: [Tipo Usuario]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema: 
  *           type: string
  *         required: true
- *         description: product id
+ *         description: tipo_usuario id
  *     responses:
  *       200:
  *         description: eliminado satisfactoriamente
  *       404:
- *         description: marca not found
+ *         description: tipo_usuario not found
  */
-router.delete("/delete/:id", marca.delete);
+router.delete("/delete/:id", tipo_usuario.delete); 
 
-module.exports = router 
+
+module.exports = router
