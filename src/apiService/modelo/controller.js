@@ -96,8 +96,11 @@ exports.update = (req, res) => {
     });
   }
 
+  const idModelo = req.params.id
+  const modeloObj = new Modelo(req.body)
+
   //validate if exists modelo to update
-  Modelo.findById(req.params.id, (err, data) => {
+  Modelo.findById(idModelo, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -108,45 +111,47 @@ exports.update = (req, res) => {
           message: "Error retrieving Marca with id " + req.params.id
         });
       }
-    } else res.send(data);
-  });
-
-  //validar la marca a actualizar
-  findById(modelo.id_marca, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found Marca with id ${modelo.id_marca}.`
-        });
-      } else {
-        res.status(500).send({
-          message: "Error retrieving Marca with id " + modelo.id_marca
-        });
-      }
     } else {
-      Logger.info(req.body);
-
-      Modelo.updateById(
-        req.params.id,
-        new Modelo(req.body),
-        (err, data) => {
-          if (err) {
-            if (err.kind === "not_found") {
-              res.status(404).send({
-                message: `Not found Modelo with id ${req.params.id}.`
-              });
-            } else {
-              res.status(500).send({
-                message: "Error updating Modelo with id " + req.params.id
-              });
-            }
+      //si el modelo existe
+      //validar la marca a actualizar
+      findById(modeloObj.id_marca, (err, data) => {
+        if (err) {
+          if (err.kind === "not_found") {
+            res.status(404).send({
+              message: `Not found Marca with id ${modeloObj.id_marca}.`
+            });
           } else {
-            res.send(data);
+            res.status(500).send({
+              message: "Error retrieving Marca with id " + modeloObj.id_marca
+            });
           }
+        } else {
+          //si existe la marca
+          Logger.info(req.body);
+
+          Modelo.updateById(
+            idModelo,
+            modeloObj,
+            (err, data) => {
+              if (err) {
+                if (err.kind === "not_found") {
+                  res.status(404).send({
+                    message: `Not found Modelo with id ${req.params.id}.`
+                  });
+                } else {
+                  res.status(500).send({
+                    message: "Error updating Modelo with id " + req.params.id
+                  });
+                }
+              } else {
+                res.send(data);
+              }
+            }
+          );
         }
-      );
+      })
     }
-  })
+  });
 };
 
 exports.delete = (req, res) => {
