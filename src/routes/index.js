@@ -7,6 +7,7 @@ module.exports = app => {
 
   const routerMarca = require('./routesMarca');
   const routerModelo = require('./routesModelo');
+  const routerEquipo = require('./routesEquipo');
 
   app.use('/marca', routerMarca);
   app.use('/tipo_usuario' , routerTipoUsuario);
@@ -14,4 +15,6 @@ module.exports = app => {
   app.use('/marca', routerMarca);
   app.use('/area', routerArea);
   app.use('/modelo', routerModelo);
+
+  app.use('/equipo', routerEquipo);
 };
