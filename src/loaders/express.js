@@ -35,8 +35,8 @@ const swaggerOptions = {
     `${path.join(__dirname,"../routes/routesModelo.js")}`,
     `${path.join(__dirname,"../routes/routesTipoUsuario.js")}`,
     `${path.join(__dirname,"../routes/routesUsuario.js")}`,
-    `${path.join(__dirname,"../routes/routesEquipo.js")}`
-
+    `${path.join(__dirname,"../routes/routesEquipo.js")}`,
+    `${path.join(__dirname,"../routes/routesDetalleEquipo.js")}`,
   ]
 };
 
