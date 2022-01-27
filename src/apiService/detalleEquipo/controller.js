@@ -11,7 +11,7 @@ exports.create = (req, res) => {
         });
     }
 
-    const DetalleEquipo = new DetalleEquipo({
+    const detalleEquipo = new DetalleEquipo({
         caracteristica: req.body.caracteristica,
         eliminado: req.body.eliminado,
         u_create: req.body.u_create,
@@ -19,15 +19,15 @@ exports.create = (req, res) => {
     });
 
     //verificar si el id del equipo existe
-    findById(DetalleEquipo.id_equipo, (err, data) => {
+    findById(detalleEquipo.id_equipo, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Not found Equipo with id ${DetalleEquipo.id_equipo}.`
+                    message: `Not found Equipo with id ${detalleEquipo.id_equipo}.`
                 });
             } else {
                 res.status(500).send({
-                    message: "Error retrieving Equipo with id " + DetalleEquipo.id_equipo
+                    message: "Error retrieving Equipo with id " + detalleEquipo.id_equipo
                 });
             }
         } else {
@@ -48,7 +48,7 @@ exports.create = (req, res) => {
                 
               }
             });*/
-            DetalleEquipo.create(DetalleEquipo, (err, data) => {
+            DetalleEquipo.create(detalleEquipo, (err, data) => {
                 if (err)
                     res.status(500).send({
                         message:

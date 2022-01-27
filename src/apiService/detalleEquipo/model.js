@@ -1,15 +1,15 @@
 const { Logger } = require("../../loaders/logger");
 const { sql } = require("../../services/mysql");
 
-const DetalleEquipo = function (equipo) {
-    this.id_detalle_equipo = equipo.id_detalle_equipo,
-    this.caracteristica = equipo.caracteristica,
-    this.eliminado = equipo.eliminado,
+const DetalleEquipo = function (detalleequipo) {
+    this.id_detalle_equipo = detalleequipo.id_detalle_equipo,
+    this.caracteristica = detalleequipo.caracteristica,
+    this.eliminado = detalleequipo.eliminado,
     //this.f_create = Utils.getCurrentDateTime,
     //this.f_update = Utils.getCurrentDateTime,
-    this.u_create = equipo.u_create,
-    this.u_update = equipo.u_update,
-    this.id_equipo = equipo.id_equipo
+    this.u_create = detalleequipo.u_create,
+    this.u_update = detalleequipo.u_update,
+    this.id_equipo = detalleequipo.id_equipo
 };
 
 DetalleEquipo.create = (newDetalleEquipo, result) => {
