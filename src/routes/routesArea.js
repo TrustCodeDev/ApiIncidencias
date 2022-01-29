@@ -1,4 +1,4 @@
-const router = require('express').Router();
+/* const router = require('express').Router();
 const area = require('../apiService/area/controller');
 
 // Create a new Area
@@ -17,3 +17,4 @@ router.put('/:id', area.update);
 router.delete('/:id', area.delete);
 
 module.exports = router;
+ */
