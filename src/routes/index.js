@@ -9,6 +9,7 @@ module.exports = app => {
   const routerMarca = require('./routesMarca');
   const routerModelo = require('./routesModelo');
   const routerEquipo = require('./routesEquipo');
+  const routerDetalleEquipo = require('./routesDetalleEquipo')
 
   app.use('/marca', routerMarca);
   
@@ -21,4 +22,5 @@ module.exports = app => {
   app.use('/modelo', routerModelo);
 
   app.use('/equipo', routerEquipo);
+  app.use('/detalleEquipo',routerDetalleEquipo)
 };
