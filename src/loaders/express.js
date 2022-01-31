@@ -31,12 +31,23 @@ const swaggerOptions = {
   },
   // ['.routes/*.js']
   apis: [
+<<<<<<< HEAD
     `${path.join(__dirname, '../routes/routesMarca.js')}`,
     `${path.join(__dirname, '../routes/routesModelo.js')}`,
     `${path.join(__dirname, '../routes/routesTipoUsuario.js')}`,
     `${path.join(__dirname, '../routes/routesUsuario.js')}`,
     `${path.join(__dirname, '../routes/routesEquipo.js')}`,
   ],
+=======
+    `${path.join(__dirname,"../routes/routesMarca.js")}`,
+    `${path.join(__dirname,"../routes/routesModelo.js")}`,
+    `${path.join(__dirname,"../routes/routesTipoUsuario.js")}`,
+    `${path.join(__dirname,"../routes/routesUsuario.js")}`,
+    `${path.join(__dirname,"../routes/routesEquipo.js")}`,
+    `${path.join(__dirname,"../routes/routesIncidencia.js")}`,
+    `${path.join(__dirname,"../routes/routesDetalleEquipo.js")}`,
+  ]
+>>>>>>> 4e887ec97a15e38c56b0cce1b43476ae964d70b9
 };
 
 const expressUp = app => {
