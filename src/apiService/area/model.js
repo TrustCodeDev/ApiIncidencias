@@ -16,7 +16,6 @@ const Area = function (area) {
     (this.u_update = area.u_update);
 };
 
-//probando '${newArea.eliminado}' esto cambié por esto '0'
 Area.create = (newArea, result) => {
   const query = `INSERT INTO area(nombre,estado,eliminado,f_create,f_update,u_create,u_update) 
                              values ('${newArea.nombre}', '${newArea.estado}', '${newArea.eliminado}', NOW(), NOW(), '${newArea.u_create}', '${newArea.u_update}');`;
