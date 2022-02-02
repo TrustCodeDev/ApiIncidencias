@@ -34,7 +34,7 @@ El desarrolo de la APP se ah apoyado de los siguiente complementos para su reali
 
 | Plugins | Links |
 | ------ | ------ |
-| GitHub | [https://github.com/][PlGb] |
+| GitHub | [https://github.com/][PlDa] |
 | Google Drive | [https://www.google.com/intl/es/drive/][PlGh] |
 | Visual Studio Code | [https://code.visualstudio.com/][PlGd] |
 
@@ -44,7 +44,7 @@ El desarrolo de la APP se ah apoyado de los siguiente complementos para su reali
 [express]: <http://expressjs.com>
 [mysql]: <https://www.mysql.com>
 
-[PlDb]: <https://github.com/>
+[PlDa]: <https://github.com/>
 [PlGh]: <https://www.google.com/intl/es/drive/>
 [PlGd]: <https://code.visualstudio.com/>
 
