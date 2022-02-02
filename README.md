@@ -34,8 +34,8 @@ El desarrolo de la APP se ah apoyado de los siguiente complementos para su reali
 
 | Plugins | Links |
 | ------ | ------ |
-| GitHub | [https://github.com/][PlGh] |
-| Google Drive | [https://www.google.com/intl/es/drive/][PlGd] |
+| GitHub | [https://github.com/][PlGb] |
+| Google Drive | [https://www.google.com/intl/es/drive/][PlGh] |
 | Visual Studio Code | [https://code.visualstudio.com/][PlGd] |
 
 
