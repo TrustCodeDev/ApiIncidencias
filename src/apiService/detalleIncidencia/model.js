@@ -20,7 +20,7 @@ const DetalleIncidencia = function (detalleIncidencia) {
 };
 
 DetalleIncidencia.create = (newDetalleIncidencia, result) => {
-  const query = `INSERT INTO detalle_incidencia(id_detalle_incidencia,fecha,eliminado,f_create,f_update,u_create,u_update,usuario_id_usuario,incidencia_id_incidencia,area_id_area,conocimiento_id_conocimiento) 
+  const query = `INSERT INTO detalle_incidencia(fecha,eliminado,f_create,f_update,u_create,u_update,usuario_id_usuario,incidencia_id_incidencia,area_id_area,conocimiento_id_conocimiento) 
                              values ('${newDetalleIncidencia.fecha}', 
                              '${newDetalleIncidencia.eliminado}', 
                              NOW(), 

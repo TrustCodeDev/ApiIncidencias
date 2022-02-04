@@ -2,6 +2,8 @@
 
 const { Logger } = require('../../loaders/logger');
 const DetalleIncidencia = require('./model');
+const area = require('../area/model.js');
+const usuario = require('../usuario/model.js');
 
 exports.create = (req, res) => {
   // Validate request
@@ -11,7 +13,7 @@ exports.create = (req, res) => {
     });
   }
 
-  // Create a Area
+  // Create a detalle incidencia
   const detalleIncidencia = new DetalleIncidencia({
     fecha: req.body.fecha,
     eliminado: req.body.eliminado,
@@ -21,6 +23,24 @@ exports.create = (req, res) => {
     incidencia_id_incidencia: req.body.incidencia_id_incidencia,
     area_id_area: req.body.area_id_area,
     conocimiento_id_conocimiento: req.body.conocimiento_id_conocimiento,
+  });
+
+  area.findById(detalleIncidencia.area_id_area, (err, data) => {
+    if (err)
+      res.status(204).send({
+        message:
+          err.message ||
+          `Area con id ${detalleIncidencia.area_id_area} no existe.`,
+      });
+  });
+
+  usuario.findById(detalleIncidencia.usuario_id_usuario, (err, data) => {
+    if (err)
+      res.status(204).send({
+        message:
+          err.message ||
+          `El usuario con id ${detalleIncidencia.usuario_id_usuario} no existe.`,
+      });
   });
 
   // Save DetalleIncidencia in the database
@@ -34,7 +54,7 @@ exports.create = (req, res) => {
     else res.send(data);
   });
 
-  // validate repeated
+  // validate area exist
 
   // DetalleIncidencia.findByName(area.nombre, (err, data) => {
   //   if (err) {
