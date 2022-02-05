@@ -16,15 +16,15 @@ const incidencia = require("../apiService/incidencia/controller");
  *        fecha_registro:
  *          type: date
  *          description: fecha automatica de creacion de incidente
+ *        fecha_inicio:
+ *          type: date
+ *          description: fecha manual de inicio del incidente   
  *        fecha_finalizacion:
  *          type: date
  *          description: fecha manual de finalizacion de incidente
  *        descripcion:
  *          type: string
  *          description: descripcion de incidente
- *        usuario: 
- *          type: string
- *          description: usuario que registra incidente
  *        nivel_incidencia:
  *          type: string
  *          description: nivel de incidencia 
@@ -43,32 +43,35 @@ const incidencia = require("../apiService/incidencia/controller");
  *        u_update:
  *          type: string
  *          description: usuario de actualizacion
- *        equipo_id_equipo: 
+ *        id_usuario:
  *          type: integer
- *          description: id relacional del equipo_id_equipo
- *        fecha_inicio:
- *          type: date
- *          description: fecha manual de inicio del incidente   
+ *          description: id relacional del id_usuario
+ *        id_equipo: 
+ *          type: integer
+ *          description: id relacional del id_equipo
+ *        id_area:
+ *          type: integer
+ *          description: id relacional del id_area
  *      required:
  *        - descripcion
- *        - usuario
  *        - nivel_incidencia
- *        - eliminado
  *        - u_create
- *        - equipo_id_equipo
+ *        - id_usuario
+ *        - id_equipo
+ *        - id_area
  *      example:
- *        fecha_registro: 2022-01-18 22:43:09
- *        fecha_finalizacion: 2022-01-28 17:52:02 
- *        descripcion: Incidencia
- *        usuario: Activo
- *        nivel_incidencia: bajo
+ *        fecha_inicio: 2022-01-27 17:00:00 
+ *        fecha_finalizacion: 2022-01-28 18:00:00 
+ *        descripcion: Incidencia N1 - Problemas con el inicio de sesión 
+ *        nivel_incidencia: Medio
  *        eliminado: 0
  *        f_create: 2022-01-18 22:43:09
  *        f_update: 2022-01-18 22:43:09
- *        u_create: rbalbis
- *        u_update: rbalbis
- *        equipo_id_equipo: 1
- *        fecha_inicio: 2022-01-27 17:52:02 
+ *        u_create: pbecerra
+ *        u_update: pbecerra
+ *        id_usuario: 1
+ *        id_equipo: 1 
+ *        id_area: 1 
  */
 
 

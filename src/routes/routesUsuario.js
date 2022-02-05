@@ -25,9 +25,6 @@ const usuario = require("../apiService/usuario/controller");
  *        telefono: 
  *          type: integer
  *          description: telefono del usuario
- *        estado:
- *          type: string
- *          description: estado del usuario 
  *        eliminado:
  *          type: integer
  *          description: indica 1 si esta inactivo 0 si esta activo
@@ -43,35 +40,37 @@ const usuario = require("../apiService/usuario/controller");
  *        u_update:
  *          type: string
  *          description: usuario de actualizacion
- *        tipo_usuario_id_tipo_usuario: 
- *          type: integer
- *          description: id relacional del usuario_tipo_usuario
  *        nickname:
  *          type: string
- *          description: nickname del usuario   
+ *          description: nickname del usuario
+ *        contrasena:
+ *          type: string
+ *          description: contraseña del usuario
+ *        id_tipo_usuario: 
+ *          type: integer
+ *          description: id relacional del tipo_usuario   
  *      required:
  *        - nombre
  *        - apellido 
  *        - sexo 
  *        - telefono
- *        - estado
- *        - eliminado
  *        - u_create
- *        - tipo_usuario_id_tipo_usuario
  *        - nickname
+ *        - contrasena
+ *        - id_tipo_usuario
  *      example:
- *        nombre: Ricardo
- *        apellido: Balbis
+ *        nombre: Piero
+ *        apellido: Becerra
  *        sexo: Hombre
- *        telefono: 625232
- *        estado: Activo
+ *        telefono: 314251
  *        eliminado: 0
  *        f_create: 2022-01-18 22:43:09
  *        f_update: 2022-01-18 22:43:09
- *        u_create: rbalbis
- *        u_update: rbalbis
- *        tipo_usuario_id_tipo_usuario: 1
- *        nickname: rbalbis 
+ *        u_create: pbecerra
+ *        u_update: pbecerra
+ *        nickname: pbecerra
+ *        contrasena: soyshalon
+ *        id_tipo_usuario: 1 
  */
 
 
