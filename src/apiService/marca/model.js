@@ -15,8 +15,8 @@ const Marca = function (marca) {
 
 Marca.create = (newMarca, result) => {
 
-  const query = `INSERT INTO marca(nombre,eliminado,f_create,f_update,u_create,u_update) 
-                             values ('${newMarca.nombre}', '${newMarca.eliminado}', NOW(), NOW(), '${newMarca.u_create}', '${newMarca.u_update}');`
+  const query = `INSERT INTO marca(nombre,u_create) 
+                             values ('${newMarca.nombre}', '${newMarca.u_create}');`
 
   sql.query(query, (err, res) => {
     if (err) {

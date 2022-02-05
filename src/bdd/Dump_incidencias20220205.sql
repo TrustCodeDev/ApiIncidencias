@@ -36,7 +36,7 @@ CREATE TABLE `area` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `area`{}
+-- Dumping data for table `area`
 --
 
 LOCK TABLES `area` WRITE;
@@ -163,8 +163,8 @@ CREATE TABLE `equipo` (
   `id_modelo` bigint NOT NULL,
   PRIMARY KEY (`id_equipo`),
   UNIQUE KEY `id_equipo_UNIQUE` (`id_equipo`),
-  KEY `fk_modelo_idx` (`id_modelo`),
-  CONSTRAINT `fk_modelo` FOREIGN KEY (`id_modelo`) REFERENCES `modelo` (`id_modelo`)
+  KEY `fk_modelo_equipo_idx` (`id_modelo`),
+  CONSTRAINT `fk_modelo_equipo` FOREIGN KEY (`id_modelo`) REFERENCES `modelo` (`id_modelo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -198,10 +198,13 @@ CREATE TABLE `incidencia` (
   `u_update` varchar(100) DEFAULT NULL,
   `id_usuario` bigint NOT NULL,
   `id_equipo` bigint NOT NULL,
+  `id_area` bigint NOT NULL,
   PRIMARY KEY (`id_incidencia`),
   UNIQUE KEY `id_incidencia_UNIQUE` (`id_incidencia`),
   KEY `fk_usuario_idx` (`id_usuario`),
   KEY `fk_equipo_idx` (`id_equipo`),
+  KEY `fk_area_idx` (`id_area`),
+  CONSTRAINT `fk_area` FOREIGN KEY (`id_area`) REFERENCES `area` (`id_area`),
   CONSTRAINT `fk_equipo` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id_equipo`),
   CONSTRAINT `fk_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -233,7 +236,7 @@ CREATE TABLE `marca` (
   `u_update` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_marca`),
   UNIQUE KEY `id_marca_UNIQUE` (`id_marca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,6 +245,7 @@ CREATE TABLE `marca` (
 
 LOCK TABLES `marca` WRITE;
 /*!40000 ALTER TABLE `marca` DISABLE KEYS */;
+INSERT INTO `marca` VALUES (1,'HP',0,'2022-02-05 16:01:45','2022-02-05 16:06:00','rbueno','admin');
 /*!40000 ALTER TABLE `marca` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +257,7 @@ DROP TABLE IF EXISTS `modelo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `modelo` (
-  `id_modelo` bigint NOT NULL,
+  `id_modelo` bigint NOT NULL AUTO_INCREMENT,
   `nombre` varchar(200) NOT NULL,
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -325,6 +329,7 @@ CREATE TABLE `usuario` (
   `u_create` varchar(100) DEFAULT NULL,
   `u_update` varchar(100) DEFAULT NULL,
   `nickname` varchar(200) NOT NULL,
+  `contrasena` varchar(12) NOT NULL,
   `id_tipo_usuario` bigint NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `id_usuario_UNIQUE` (`id_usuario`),
@@ -351,4 +356,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-04 13:51:08
+-- Dump completed on 2022-02-05 16:29:09
