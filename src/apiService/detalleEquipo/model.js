@@ -14,8 +14,8 @@ const DetalleEquipo = function (detalleequipo) {
 
 DetalleEquipo.create = (newDetalleEquipo, result) => {
 
-  const query = `INSERT INTO detalle_equipo(caracteristica,eliminado,f_create,u_create,id_equipo) 
-                values ('${newDetalleEquipo.caracteristica}', '${newDetalleEquipo.eliminado}', NOW(), '${newDetalleEquipo.u_create}',${newDetalleEquipo.id_equipo});`
+  const query = `INSERT INTO detalle_equipo(caracteristica,u_create,id_equipo) 
+                values ('${newDetalleEquipo.caracteristica}', '${newDetalleEquipo.u_create}',${newDetalleEquipo.id_equipo});`
 
   sql.query(query, (err, res) => {
     if (err) {
@@ -46,7 +46,7 @@ DetalleEquipo.findByName = (name, result) => {
 }
 
 DetalleEquipo.findById = (id, result) => {
-  sql.query(`SELECT * FROM detalle_equipo WHERE id_detalle_equipo = ${id} and eliminado = 0`, (err, res) => {
+  sql.query(`SELECT * FROM detalle_equipo WHERE id_detalle_eqiupo = ${id} and eliminado = 0`, (err, res) => {
     if (err) {
       Logger.error("error: ", err);
       result(err, null);
@@ -84,7 +84,7 @@ DetalleEquipo.getAll = (result) => {
 };
 
 DetalleEquipo.updateById = (id, detalleEquipo, result) => {
-  sql.query("UPDATE detalle_equipo SET caracteristica = ?, eliminado = ?, f_update = NOW(), u_update = ?, id_equipo = ? WHERE id_detalle_equipo = ?",
+  sql.query("UPDATE detalle_equipo SET caracteristica = ?, eliminado = ?, f_update = NOW(), u_update = ?, id_equipo = ? WHERE id_detalle_eqiupo = ?",
     [detalleEquipo.caracteristica, detalleEquipo.eliminado, detalleEquipo.u_update, detalleEquipo.id_equipo, id],
     (err, res) => {
       if (err) {
@@ -106,7 +106,7 @@ DetalleEquipo.updateById = (id, detalleEquipo, result) => {
 };
 
 DetalleEquipo.remove = (id, result) => {
-  sql.query("UPDATE detalle_equipo SET eliminado = 1 WHERE id_detalle_equipo = ?", id, (err, res) => {
+  sql.query("UPDATE detalle_equipo SET eliminado = 1 WHERE id_detalle_eqiupo = ?", id, (err, res) => {
     if (err) {
       Logger.error("error: ", err);
       result(null, err);
