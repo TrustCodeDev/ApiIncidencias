@@ -13,8 +13,6 @@ exports.create = (req, res) => {
     // Create Tipo_Usuario
     const tipo_usuario = new Tipo_Usuario({
     descripcion: req.body.descripcion,
-    estado : req.body.estado,
-    eliminado: req.body.eliminado,
     u_create: req.body.u_create,
     u_update: req.body.u_update
     });

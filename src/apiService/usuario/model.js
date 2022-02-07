@@ -9,12 +9,13 @@ const Usuario = function (usuario) {
     this.apellido = usuario.apellido,
     this.sexo = usuario.sexo,
     this.telefono = usuario.telefono,
-    this.estado = usuario.estado,
     this.eliminado = usuario.eliminado,
     this.u_create = usuario.u_create,
     this.u_update = usuario.u_update,
-    this.tipo_usuario_id_tipo_usuario = usuario.tipo_usuario_id_tipo_usuario, 
-    this.nickname = usuario.nickname
+    this.nickname = usuario.nickname,
+    this.contrasena = usuario.contrasena,
+    this.id_tipo_usuario = usuario.id_tipo_usuario 
+    
 };
 
 
@@ -23,10 +24,9 @@ Usuario.create = (newUsuario, result) => {
 
     const query = 
     `INSERT INTO usuario
-    (nombre,apellido,sexo,telefono,estado,eliminado,f_create,f_update,u_create,u_update,tipo_usuario_id_tipo_usuario,nickname) 
+    (nombre,apellido,sexo,telefono,f_create,f_update,u_create,u_update,nickname,contrasena,id_tipo_usuario) 
     values 
-    ('${newUsuario.nombre}' , '${newUsuario.apellido}' , '${newUsuario.sexo}' , '${newUsuario.telefono}' ,'${newUsuario.estado}', '${newUsuario.eliminado}' ,NOW(), NOW(), '${newUsuario.u_create}', '${newUsuario.u_update}' , 
-    '${newUsuario.tipo_usuario_id_tipo_usuario}' , '${newUsuario.nickname}');`
+    ('${newUsuario.nombre}' , '${newUsuario.apellido}' , '${newUsuario.sexo}' , '${newUsuario.telefono}' ,NOW(), NOW(), '${newUsuario.u_create}', '${newUsuario.u_update}' , '${newUsuario.nickname}' , '${newUsuario.contrasena}' , '${newUsuario.id_tipo_usuario}');`
 
     sql.query(query, (err, res) => {
     if (err) {
@@ -104,8 +104,8 @@ Usuario.getAll = (result) => {
 // Update By Id 
 Usuario.updateById = (id, usuario, result) => {
 
-    sql.query("UPDATE usuario SET nombre = ?, apellido = ? , sexo = ? , telefono = ?  , estado = ?, eliminado = ?, f_update = NOW(), u_update = ? , tipo_usuario_id_tipo_usuario = ?  , nickname = ? WHERE id_usuario = ?",
-    [usuario.nombre, usuario.apellido , usuario.sexo , usuario.telefono , usuario.estado, usuario.eliminado, usuario.u_update, usuario.tipo_usuario_id_tipo_usuario , usuario.nickname , id],
+    sql.query("UPDATE usuario SET nombre = ?, apellido = ? , sexo = ? , telefono = ?  , eliminado = ?, f_update = NOW(), u_update = ? , nickname = ?  , contrasena = ? , id_tipo_usuario = ? WHERE id_usuario = ?",
+    [usuario.nombre, usuario.apellido , usuario.sexo , usuario.telefono , usuario.eliminado, usuario.u_update, usuario.nickname , usuario.contrasena , usuario.id_tipo_usuario , id],
     (err, res) => {
 
         console.log(err)

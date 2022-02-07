@@ -5,15 +5,16 @@ const { sql } = require("../../services/mysql");
 // Constructor
 const Incidencia = function (incidencia) {
     this.id_incidencia = incidencia.id_incidencia,
+    this.fecha_inicio = incidencia.fecha_inicio,
     this.fecha_finalizacion = incidencia.fecha_finalizacion,
     this.descripcion = incidencia.descripcion,
-    this.usuario = incidencia.usuario,
     this.nivel_incidencia = incidencia.nivel_incidencia,
     this.eliminado = incidencia.eliminado,
     this.u_create = incidencia.u_create,
     this.u_update = incidencia.u_update,
-    this.equipo_id_equipo = incidencia.equipo_id_equipo,
-    this.fecha_inicio = incidencia.fecha_inicio
+    this.id_usuario = incidencia.id_usuario,
+    this.id_equipo = incidencia.id_equipo,
+    this.id_area = incidencia.id_area
 };
 
 
@@ -22,9 +23,9 @@ Incidencia.create = (newIncidencia, result) => {
 
     const query = 
     `INSERT INTO incidencia
-    (fecha_registro,fecha_finalizacion,descripcion,usuario,nivel_incidencia,eliminado,f_create,f_update,u_create,u_update,equipo_id_equipo,fecha_inicio) 
+    (fecha_registro,fecha_inicio,fecha_finalizacion,descripcion,nivel_incidencia,f_create,f_update,u_create,u_update,id_usuario,id_equipo,id_area) 
     values 
-    (NOW() , '${newIncidencia.fecha_finalizacion}' , '${newIncidencia.descripcion}' , '${newIncidencia.usuario}' ,'${newIncidencia.nivel_incidencia}', '${newIncidencia.eliminado}' ,NOW(), NOW(), '${newIncidencia.u_create}', '${newIncidencia.u_update}' , '${newIncidencia.equipo_id_equipo}' , '${newIncidencia.fecha_inicio}');`
+    (NOW() , '${newIncidencia.fecha_inicio}' , '${newIncidencia.fecha_finalizacion}' , '${newIncidencia.descripcion}' , '${newIncidencia.nivel_incidencia}' , NOW(), NOW(), '${newIncidencia.u_create}', '${newIncidencia.u_update}' , '${newIncidencia.id_usuario}' , '${newIncidencia.id_equipo}' , '${newIncidencia.id_area}' );`
 
     sql.query(query, (err, res) => {
     if (err) {
@@ -102,8 +103,8 @@ Incidencia.getAll = (result) => {
 // Update By Id 
 Incidencia.updateById = (id, incidencia, result) => {
 
-    sql.query("UPDATE incidencia SET fecha_finalizacion = ? , descripcion = ? , usuario = ? , nivel_incidencia = ? , eliminado = ?, f_update = NOW(), u_update = ? , equipo_id_equipo = ? , fecha_inicio = ? WHERE id_incidencia = ?",
-    [incidencia.fecha_finalizacion, incidencia.descripcion , incidencia.usuario , incidencia.nivel_incidencia , incidencia.eliminado, incidencia.u_update, incidencia.equipo_id_equipo , incidencia.fecha_inicio , id],
+    sql.query("UPDATE incidencia SET fecha_inicio = ? , fecha_finalizacion = ? , descripcion = ? , nivel_incidencia = ? , eliminado = ?, f_update = NOW(), u_update = ? , id_usuario = ? , id_equipo = ? , id_area = ? WHERE id_incidencia = ?",
+    [incidencia.fecha_inicio,incidencia.fecha_finalizacion, incidencia.descripcion , incidencia.nivel_incidencia , incidencia.eliminado, incidencia.u_update, incidencia.id_usuario , incidencia.id_equipo , incidencia.id_area ,id],
     (err, res) => {
 
         console.log(err)

@@ -16,9 +16,6 @@ const tipo_usuario = require("../apiService/tipo_usuario/controller");
  *        descripcion:
  *          type: string
  *          description: descripcion del tipo_usuario
- *        estado:
- *          type: string
- *          description: estado del tipo_usuario 
  *        eliminado:
  *          type: integer
  *          description: indica 1 si esta inactivo 0 si esta activo
@@ -36,17 +33,14 @@ const tipo_usuario = require("../apiService/tipo_usuario/controller");
  *          description: usuario de actualizacion
  *      required:
  *        - descripcion
- *        - estado
- *        - eliminado
  *        - u_create
  *      example:
- *        descripcion: Administrador
- *        estado: Activo
- *        eliminado: 0
+ *        descripcion: Normal
+ *        eliminado: 0  
  *        f_create: 2022-01-18 22:43:09
  *        f_update: 2022-01-18 22:43:09
- *        u_create: rbalbis
- *        u_update: rbalbis
+ *        u_create: cpiero
+ *        u_update: cpiero
  */
 
 
