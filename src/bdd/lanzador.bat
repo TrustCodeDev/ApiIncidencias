@@ -76,7 +76,7 @@ mysql --user=%user% --password=%pass% --execute="show databases;"
 mysql --user=%user% --password=%pass% --execute="create database incidencias;"
 mysql --user=%user% --password=%pass% --execute="show databases;"
 rem mysql --user=%user% --password=%pass% --execute="incidencias < Dump_incidencias20220205.sql;"
-mysql --user=%user% --database="incidencias" --password=%pass% < "Dump_incidencias20220205.sql"
+mysql --user=%user% --database="incidencias" --password=%pass% < +"Dump20220212.sql"
 goto CLOSE_PROGRAM
 goto:EOF
 

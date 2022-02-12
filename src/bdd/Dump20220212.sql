@@ -24,12 +24,12 @@ DROP TABLE IF EXISTS `area`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `area` (
   `id_area` bigint NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombre` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
   `f_update` datetime DEFAULT CURRENT_TIMESTAMP,
-  `u_create` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `u_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `u_create` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `u_update` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_area`),
   UNIQUE KEY `id_area_UNIQUE` (`id_area`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -53,14 +53,14 @@ DROP TABLE IF EXISTS `conocimiento`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `conocimiento` (
   `id_conocimiento` bigint NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `descripcion` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
-  `solucion` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `solucion` longtext CHARACTER SET utf8 COLLATE utf8_general_ci,
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
   `f_update` datetime DEFAULT CURRENT_TIMESTAMP,
-  `u_create` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `u_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `u_create` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `u_update` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `id_usuario` bigint NOT NULL,
   PRIMARY KEY (`id_conocimiento`),
   UNIQUE KEY `id_conocimiento_UNIQUE` (`id_conocimiento`),
@@ -87,12 +87,12 @@ DROP TABLE IF EXISTS `detalle_equipo`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detalle_equipo` (
   `id_detalle_eqiupo` bigint NOT NULL AUTO_INCREMENT,
-  `caracteristica` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `caracteristica` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
   `f_update` datetime DEFAULT CURRENT_TIMESTAMP,
-  `u_create` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `u_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `u_create` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `u_update` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `id_equipo` bigint NOT NULL,
   PRIMARY KEY (`id_detalle_eqiupo`),
   UNIQUE KEY `id_detalle_eqiupo_UNIQUE` (`id_detalle_eqiupo`),
@@ -123,8 +123,8 @@ CREATE TABLE `detalle_incidencia` (
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
   `f_update` datetime DEFAULT CURRENT_TIMESTAMP,
-  `u_create` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `u_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `u_create` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `u_update` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `id_incidencia` bigint NOT NULL,
   `id_conocimiento` bigint NOT NULL,
   PRIMARY KEY (`id_detalle_incidencia`),
@@ -154,12 +154,12 @@ DROP TABLE IF EXISTS `equipo`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `equipo` (
   `id_equipo` bigint NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `descripcion` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
   `f_update` datetime DEFAULT CURRENT_TIMESTAMP,
-  `u_create` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `u_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `u_create` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `u_update` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `id_modelo` bigint NOT NULL,
   PRIMARY KEY (`id_equipo`),
   UNIQUE KEY `id_equipo_UNIQUE` (`id_equipo`),
@@ -189,13 +189,13 @@ CREATE TABLE `incidencia` (
   `fecha_registro` datetime DEFAULT NULL,
   `fecha_inicio` datetime DEFAULT NULL,
   `fecha_finalizacion` datetime DEFAULT NULL,
-  `descripcion` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `nivel_incidencia` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `descripcion` longtext CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `nivel_incidencia` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
   `f_update` datetime DEFAULT CURRENT_TIMESTAMP,
-  `u_create` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `u_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `u_create` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `u_update` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `id_usuario` bigint NOT NULL,
   `id_equipo` bigint NOT NULL,
   `id_area` bigint NOT NULL,
@@ -228,12 +228,12 @@ DROP TABLE IF EXISTS `marca`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `marca` (
   `id_marca` bigint NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombre` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
   `f_update` datetime DEFAULT CURRENT_TIMESTAMP,
-  `u_create` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `u_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `u_create` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `u_update` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_marca`),
   UNIQUE KEY `id_marca_UNIQUE` (`id_marca`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
@@ -258,12 +258,12 @@ DROP TABLE IF EXISTS `modelo`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `modelo` (
   `id_modelo` bigint NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombre` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
   `f_update` datetime DEFAULT CURRENT_TIMESTAMP,
-  `u_create` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `u_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `u_create` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `u_update` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `id_marca` bigint NOT NULL,
   PRIMARY KEY (`id_modelo`),
   UNIQUE KEY `id_modelo_UNIQUE` (`id_modelo`),
@@ -290,12 +290,12 @@ DROP TABLE IF EXISTS `tipo_usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipo_usuario` (
   `id_tipo_usuario` bigint NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `descripcion` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
   `f_update` datetime DEFAULT CURRENT_TIMESTAMP,
-  `u_create` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `u_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `u_create` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `u_update` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_tipo_usuario`),
   UNIQUE KEY `id_tipo_usuario_UNIQUE` (`id_tipo_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -319,17 +319,17 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `id_usuario` bigint NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `apellido` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `sexo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `telefono` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `nombre` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `apellido` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `sexo` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `telefono` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `eliminado` int DEFAULT '0' COMMENT '1: inactivo 0: activo\n',
   `f_create` datetime DEFAULT CURRENT_TIMESTAMP,
   `f_update` datetime DEFAULT CURRENT_TIMESTAMP,
-  `u_create` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `u_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `nickname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `contrasena` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `u_create` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `u_update` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `nickname` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `contrasena` varchar(12) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `id_tipo_usuario` bigint NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `id_usuario_UNIQUE` (`id_usuario`),
@@ -356,4 +356,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-12  0:46:39
+-- Dump completed on 2022-02-12  0:59:39
