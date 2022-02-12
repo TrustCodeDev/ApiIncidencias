@@ -25,7 +25,7 @@ DetalleIncidencia.create = (newDetalleIncidencia, result) => {
                              '${newDetalleIncidencia.eliminado}', 
                              NOW(), 
                              NOW(), 
-                             '${newDetalleIncidencia.u_update}', 
+                             '${newDetalleIncidencia.u_create}', 
                              '${newDetalleIncidencia.u_update}', 
                              '${newDetalleIncidencia.usuario_id_usuario}', 
                              '${newDetalleIncidencia.incidencia_id_incidencia}', 
@@ -107,13 +107,13 @@ DetalleIncidencia.getAll = result => {
 
 DetalleIncidencia.updateById = (id, detalleIncidencia, result) => {
   sql.query(
-    'UPDATE detalle_incidencia SET fecha = ?, eliminado = ?, f_update = NOW(), u_update = ?, usuario_id_usuario = ?, incidencia_id_incidencia = ?, area_id_area = ?, conocimiento_id_conocimiento = ?  WHERE id_area = ?',
+    'UPDATE detalle_incidencia SET fecha = ?, eliminado = ?, f_update = NOW(), u_update = ?, usuario_id_usuario = ?, incidencia_id_incidencia = ?, area_id_area = ?, conocimiento_id_conocimiento = ?  WHERE id_detalle_incidencia = ?',
     [
       detalleIncidencia.fecha,
       detalleIncidencia.eliminado,
       detalleIncidencia.u_update,
       detalleIncidencia.usuario_id_usuario,
-      detalleIncidencia.id_detalle_incidencia,
+      detalleIncidencia.incidencia_id_incidencia,
       detalleIncidencia.area_id_area,
       detalleIncidencia.conocimiento_id_conocimiento,
       id,
@@ -143,7 +143,7 @@ DetalleIncidencia.updateById = (id, detalleIncidencia, result) => {
 
 DetalleIncidencia.remove = (id, result) => {
   sql.query(
-    'UPDATE detalle_incidencia SET eliminado = 1 WHERE id_area = ?',
+    'UPDATE detalle_incidencia SET eliminado = 1 WHERE id_detalle_incidencia = ?',
     id,
     (err, res) => {
       if (err) {

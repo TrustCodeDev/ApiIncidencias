@@ -25,23 +25,23 @@ exports.create = (req, res) => {
     conocimiento_id_conocimiento: req.body.conocimiento_id_conocimiento,
   });
 
-  area.findById(detalleIncidencia.area_id_area, (err, data) => {
-    if (err)
-      res.status(204).send({
-        message:
-          err.message ||
-          `Area con id ${detalleIncidencia.area_id_area} no existe.`,
-      });
-  });
+  // area.findById(detalleIncidencia.area_id_area, (err, data) => {
+  //   if (err)
+  //     res.status(204).send({
+  //       message:
+  //         err.message ||
+  //         `Area con id ${detalleIncidencia.area_id_area} no existe.`,
+  //     });
+  // });
 
-  usuario.findById(detalleIncidencia.usuario_id_usuario, (err, data) => {
-    if (err)
-      res.status(204).send({
-        message:
-          err.message ||
-          `El usuario con id ${detalleIncidencia.usuario_id_usuario} no existe.`,
-      });
-  });
+  // usuario.findById(detalleIncidencia.usuario_id_usuario, (err, data) => {
+  //   if (err)
+  //     res.status(204).send({
+  //       message:
+  //         err.message ||
+  //         `El usuario con id ${detalleIncidencia.usuario_id_usuario} no existe.`,
+  //     });
+  // });
 
   // Save DetalleIncidencia in the database
   DetalleIncidencia.create(detalleIncidencia, (err, data) => {

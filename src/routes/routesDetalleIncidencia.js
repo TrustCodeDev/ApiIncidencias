@@ -59,6 +59,7 @@ const swaggerUi = require('swagger-ui-express');
  *        f_update: 2022-02-02 22:43:09
  *        u_create: rbueno
  *        u_update: admin
+ *        usuario_id_usuario: 7
  *        incidencia_id_incidencia: 1
  *        area_id_area: 1
  *        conocimiento_id_conocimiento: 1
@@ -150,7 +151,7 @@ router.get('/findOne/:id', detalleIncidencia.findOne);
  *         application/json:
  *           schema:
  *             type: object
- *             $ref: '#/components/schemas/detalle incidencia'
+ *             $ref: '#/components/schemas/detalleIncidencia'
  *     responses:
  *       200:
  *         description: se actualizo el detalle incidencia satisfactoriamente
