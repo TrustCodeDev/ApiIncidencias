@@ -18,17 +18,12 @@ exports.create = (req, res) => {
     apellido: req.body.apellido,
     sexo: req.body.sexo,
     telefono: req.body.telefono,
-    estado : req.body.estado,
-    eliminado: req.body.eliminado,
     u_create: req.body.u_create,
     u_update: req.body.u_update,
-    tipo_usuario_id_tipo_usuario: req.body.tipo_usuario_id_tipo_usuario,
-    nickname: req.body.nickname
+    nickname: req.body.nickname,
+    contrasena: req.body.contrasena,
+    id_tipo_usuario: req.body.id_tipo_usuario
     });
-
-    // Verifica si el id del tipo_usuario existe 
-    /* findById(usuario.tipo_usuario_id_tipo_usuario, (err,data) => {
-    }) */
 
     // validate Repeated
     Usuario.findByName(usuario.nickname, (err, data) => {

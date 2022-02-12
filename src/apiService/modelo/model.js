@@ -15,8 +15,8 @@ const Modelo = function (modelo) {
 
 Modelo.create = (newModelo, result) => {
  
-  const query = `INSERT INTO modelo(nombre,eliminado,f_create,f_update,u_create,u_update,marca_id_marca) 
-                             values ('${newModelo.nombre}', '${newModelo.eliminado}', NOW(), NOW(), '${newModelo.u_create}', '${newModelo.u_update}',${newModelo.id_marca});`
+  const query = `INSERT INTO modelo(nombre,u_create,id_marca) 
+                             values ('${newModelo.nombre}', '${newModelo.u_create}',${newModelo.id_marca});`
 
   sql.query(query, (err, res) => {
     if (err) {
@@ -86,7 +86,7 @@ Modelo.getAll = (result) => {
 };
 
 Modelo.updateById = (id, modelo, result) => {
-  sql.query("UPDATE modelo SET nombre = ?, eliminado = ?, f_update = NOW(), u_update = ?, marca_id_marca = ? WHERE id_modelo = ?",
+  sql.query("UPDATE modelo SET nombre = ?, eliminado = ?, f_update = NOW(), u_update = ?, id_marca = ? WHERE id_modelo = ?",
     [modelo.nombre, modelo.eliminado, modelo.u_update, modelo.id_marca, id],
     (err, res) => {
 

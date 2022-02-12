@@ -6,7 +6,6 @@ const { sql } = require("../../services/mysql");
 const Tipo_Usuario = function (tipo_usuario) {
     this.id_tipo_usuario = tipo_usuario.id_tipo_usuario,
     this.descripcion = tipo_usuario.descripcion,
-    this.estado = tipo_usuario.estado
     this.eliminado = tipo_usuario.eliminado,
     this.u_create = tipo_usuario.u_create,
     this.u_update = tipo_usuario.u_update
@@ -18,9 +17,9 @@ Tipo_Usuario.create = (newTipoUsuario, result) => {
 
     const query = 
     `INSERT INTO tipo_usuario
-    (descripcion,estado,eliminado,f_create,f_update,u_create,u_update) 
+    (descripcion,f_create,f_update,u_create,u_update) 
     values 
-    ('${newTipoUsuario.descripcion}', '${newTipoUsuario.estado}' , '${newTipoUsuario.eliminado}' ,NOW(), NOW(), '${newTipoUsuario.u_create}', '${newTipoUsuario.u_update}');`
+    ('${newTipoUsuario.descripcion}', NOW(), NOW(), '${newTipoUsuario.u_create}', '${newTipoUsuario.u_update}');`
 
     sql.query(query, (err, res) => {
     if (err) {
@@ -98,8 +97,8 @@ Tipo_Usuario.getAll = (result) => {
 // Update By Id 
 Tipo_Usuario.updateById = (id, tipo_usuario, result) => {
 
-    sql.query("UPDATE tipo_usuario SET descripcion = ?, estado = ?, eliminado = ?, f_update = NOW(), u_update = ? WHERE id_tipo_usuario = ?",
-    [tipo_usuario.descripcion, tipo_usuario.estado, tipo_usuario.eliminado, tipo_usuario.u_update, id],
+    sql.query("UPDATE tipo_usuario SET descripcion = ?, eliminado = ?, f_update = NOW(), u_update = ? WHERE id_tipo_usuario = ?",
+    [tipo_usuario.descripcion, tipo_usuario.eliminado, tipo_usuario.u_update, id],
     (err, res) => {
 
         console.log(err)

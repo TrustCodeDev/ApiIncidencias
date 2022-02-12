@@ -38,7 +38,7 @@ const swaggerUi = require('swagger-ui-express');
  *        - u_create
  *      example:
  *        nombre: HP
- *        eliminado: 2
+ *        eliminado: 0
  *        f_create: 2022-01-18 22:43:09
  *        f_update: 2022-01-18 22:43:09
  *        u_create: rbueno

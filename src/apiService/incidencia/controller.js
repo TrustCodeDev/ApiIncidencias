@@ -13,15 +13,15 @@ exports.create = (req, res) => {
 
     // Create Incidencia 
     const incidencia = new Incidencia({
+    fecha_inicio: req.body.fecha_inicio,
     fecha_finalizacion: req.body.fecha_finalizacion,
     descripcion: req.body.descripcion,
-    usuario: req.body.usuario,
     nivel_incidencia: req.body.nivel_incidencia,
-    eliminado: req.body.eliminado,
     u_create: req.body.u_create,
     u_update: req.body.u_update,
-    equipo_id_equipo: req.body.equipo_id_equipo,
-    fecha_inicio: req.body.fecha_inicio
+    id_usuario: req.body.id_usuario,
+    id_equipo: req.body.id_equipo,
+    id_area: req.body.id_area
     });
 
     // validate Repeated

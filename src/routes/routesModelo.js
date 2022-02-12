@@ -36,17 +36,16 @@ const modelo = require("../apiService/modelo/controller");
  *          description: id de marca
  *      required:
  *        - nombre
- *        - eliminado
  *        - u_create
- *        - marca_id_marca
+ *        - id_marca
  *      example:
  *        nombre: HP
- *        eliminado: 1
+ *        eliminado: 0
  *        f_create: 2022-01-18 22:43:09
  *        f_update: 2022-01-18 22:43:09
  *        u_create: rbueno
  *        u_update: admin
- *        marca_id_marca: 1
+ *        id_marca: 1
  */
 
 

@@ -13,9 +13,9 @@ exports.create = (req, res) => {
   // Create a Marca
   const marca = new Marca({
     nombre: req.body.nombre,
-    eliminado: req.body.eliminado,
+    //eliminado: req.body.eliminado,
     u_create: req.body.u_create,
-    u_update: req.body.u_update
+    //u_update: req.body.u_update
   });
 
   // validate repeated
