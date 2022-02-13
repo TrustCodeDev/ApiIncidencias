@@ -5,7 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js"
+    "start": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "TrustCode",
@@ -18,5 +18,8 @@
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.3.0",
     "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const Equipo = require("../apiService/equipo/controller");
+const Equipo = require('../apiService/equipo/controller');
 
 /**
  * @swagger
- * 
+ *
  * components:
  *  schemas:
  *    equipo:
@@ -48,8 +48,6 @@ const Equipo = require("../apiService/equipo/controller");
  *        id_modelo: 1
  */
 
-
-
 /**
  * @swagger
  * /equipo/create:
@@ -67,9 +65,9 @@ const Equipo = require("../apiService/equipo/controller");
  *       200:
  *         description: equipo creado satisfactoriamente
  */
- router.post("/create/", Equipo.create);
+router.post('/create/', Equipo.create);
 
- /**
+/**
  * @swagger
  * /equipo/findAll:
  *   get:
@@ -83,9 +81,9 @@ const Equipo = require("../apiService/equipo/controller");
  *               schema:
  *                 type: array
  *                 items:
- *                   $ref: '#/components/schemas/equipo' 
+ *                   $ref: '#/components/schemas/equipo'
  */
-router.get("/findAll", Equipo.findAll);
+router.get('/findAll', Equipo.findAll);
 
 /**
  * @swagger
@@ -96,7 +94,7 @@ router.get("/findAll", Equipo.findAll);
  *     parameters:
  *       - in: path
  *         name: id
- *         schema: 
+ *         schema:
  *           type: string
  *         required: true
  *         description: id del equipo
@@ -111,7 +109,7 @@ router.get("/findAll", Equipo.findAll);
  *       404:
  *         description: equipo not found
  */
-router.get("/findOne/:id", Equipo.findOne);
+router.get('/findOne/:id', Equipo.findOne);
 
 /**
  * @swagger
@@ -122,7 +120,7 @@ router.get("/findOne/:id", Equipo.findOne);
  *     parameters:
  *       - in: path
  *         name: id
- *         schema: 
+ *         schema:
  *           type: string
  *         required: true
  *         description: id del equipo
@@ -139,7 +137,7 @@ router.get("/findOne/:id", Equipo.findOne);
  *       404:
  *         description: equipo not found
  */
-router.put("/update/:id", Equipo.update);
+router.put('/update/:id', Equipo.update);
 
 /**
  * @swagger
@@ -150,7 +148,7 @@ router.put("/update/:id", Equipo.update);
  *     parameters:
  *       - in: path
  *         name: id
- *         schema: 
+ *         schema:
  *           type: string
  *         required: true
  *         description: id del equipo
@@ -160,7 +158,6 @@ router.put("/update/:id", Equipo.update);
  *       404:
  *         description: equipo not found
  */
-router.delete("/delete/:id", Equipo.delete);
+router.delete('/delete/:id', Equipo.delete);
 
 module.exports = router;
-

@@ -8,7 +8,7 @@ const Utils = require('../../util');
 const Area = function (area) {
   (this.id_area = area.id_area),
     (this.nombre = area.nombre),
-    (this.estado = area.estado),
+    // (this.estado = area.estado),
     (this.eliminado = area.eliminado),
     //this.f_create = Utils.getCurrentDateTime,
     //this.f_update = Utils.getCurrentDateTime,
@@ -16,10 +16,9 @@ const Area = function (area) {
     (this.u_update = area.u_update);
 };
 
-//probando '${newArea.eliminado}' esto cambié por esto '0'
 Area.create = (newArea, result) => {
-  const query = `INSERT INTO area(nombre,estado,eliminado,f_create,f_update,u_create,u_update) 
-                             values ('${newArea.nombre}', '${newArea.estado}', '${newArea.eliminado}', NOW(), NOW(), '${newArea.u_create}', '${newArea.u_update}');`;
+  const query = `INSERT INTO area(nombre,eliminado,f_create,f_update,u_create,u_update) 
+                             values ('${newArea.nombre}', '${newArea.eliminado}', NOW(), NOW(), '${newArea.u_create}', '${newArea.u_update}');`;
 
   sql.query(query, (err, res) => {
     if (err) {
@@ -92,8 +91,8 @@ Area.getAll = result => {
 
 Area.updateById = (id, area, result) => {
   sql.query(
-    'UPDATE area SET nombre = ?, estado = ?, eliminado = ?, f_update = NOW(), u_update = ? WHERE id_area = ?',
-    [area.nombre, area.estado, area.eliminado, area.u_update, id],
+    'UPDATE area SET nombre = ?, eliminado = ?, f_update = NOW(), u_update = ? WHERE id_area = ?',
+    [area.nombre, area.eliminado, area.u_update, id],
     (err, res) => {
       console.log(err);
       if (err) {
