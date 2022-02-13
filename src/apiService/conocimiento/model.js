@@ -10,24 +10,24 @@ const Conocimiento = function (conocimiento) {
     (this.descripcion = conocimiento.descripcion),
     (this.fecha = conocimiento.fecha),
     (this.solucion = conocimiento.solucion),
-    (this.usuario = conocimiento.usuario),
     (this.eliminado = conocimiento.eliminado),
     (this.u_create = conocimiento.u_create),
-    (this.u_update = conocimiento.u_update);
+    (this.u_update = conocimiento.u_update),
+    (this.id_usuario = conocimiento.id_usuario);
 };
 
 //CONOCIMIENTO CREATE
 Conocimiento.create = (newConocimiento, result) => {
-  const query = `INSERT INTO conocimiento(descripcion,fecha, solucion, usuario,eliminado,f_create,f_update,u_create,u_update) 
+  const query = `INSERT INTO conocimiento(descripcion,fecha, solucion,eliminado,f_create,f_update,u_create,u_update,id_usuario) 
   values ('${newConocimiento.descripcion}', 
   '${newConocimiento.fecha}', 
   '${newConocimiento.solucion}', 
-  '${newConocimiento.usuario}', 
   '${newConocimiento.eliminado}', 
   NOW(), 
   NOW(), 
   '${newConocimiento.u_create}', 
-  '${newConocimiento.u_update}');`;
+  '${newConocimiento.u_update}',
+  ${newConocimiento.id_usuario});`;
 
   sql.query(query, (err, res) => {
     if (err) {
@@ -108,14 +108,14 @@ Conocimiento.getAll = result => {
 //CONOCIMIENTO UPDATE BY ID
 Conocimiento.updateById = (id, conocimiento, result) => {
   sql.query(
-    'UPDATE conocimiento SET descripcion = ?, fecha = ?, solucion = ?, usuario = ?, eliminado = ?, f_update = NOW(), u_update = ? WHERE id_conocimiento = ?',
+    'UPDATE conocimiento SET descripcion = ?, fecha = ?, solucion = ?, eliminado = ?, f_update = NOW(), u_update = ?, id_usuario = ? WHERE id_conocimiento = ?',
     [
       conocimiento.descripcion,
       conocimiento.fecha,
       conocimiento.solucion,
-      conocimiento.usuario,
       conocimiento.eliminado,
       conocimiento.u_update,
+      conocimiento.id_usuario,
       id,
     ],
     (err, res) => {

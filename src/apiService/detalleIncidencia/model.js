@@ -7,30 +7,22 @@ const Utils = require('../../util');
 // constructor Detalle Incidencia
 const DetalleIncidencia = function (detalleIncidencia) {
   (this.id_detalle_incidencia = detalleIncidencia.id_detalle_incidencia),
-    (this.fecha = detalleIncidencia.fecha),
     (this.eliminado = detalleIncidencia.eliminado),
     (this.u_create = detalleIncidencia.u_create),
     (this.u_update = detalleIncidencia.u_update),
-    (this.usuario_id_usuario = detalleIncidencia.usuario_id_usuario),
-    (this.incidencia_id_incidencia =
-      detalleIncidencia.incidencia_id_incidencia),
-    (this.area_id_area = detalleIncidencia.area_id_area),
-    (this.conocimiento_id_conocimiento =
-      detalleIncidencia.conocimiento_id_conocimiento);
+    (this.id_incidencia = detalleIncidencia.id_incidencia),
+    (this.id_conocimiento = detalleIncidencia.id_conocimiento);
 };
 
 DetalleIncidencia.create = (newDetalleIncidencia, result) => {
-  const query = `INSERT INTO detalle_incidencia(fecha,eliminado,f_create,f_update,u_create,u_update,usuario_id_usuario,incidencia_id_incidencia,area_id_area,conocimiento_id_conocimiento) 
-                             values ('${newDetalleIncidencia.fecha}', 
-                             '${newDetalleIncidencia.eliminado}', 
+  const query = `INSERT INTO detalle_incidencia(eliminado,f_create,f_update,u_create,u_update,id_incidencia,id_conocimiento) 
+                             values ('${newDetalleIncidencia.eliminado}', 
                              NOW(), 
                              NOW(), 
                              '${newDetalleIncidencia.u_create}', 
-                             '${newDetalleIncidencia.u_update}', 
-                             '${newDetalleIncidencia.usuario_id_usuario}', 
-                             '${newDetalleIncidencia.incidencia_id_incidencia}', 
-                             '${newDetalleIncidencia.area_id_area}', 
-                             '${newDetalleIncidencia.conocimiento_id_conocimiento}');`;
+                             '${newDetalleIncidencia.u_update}',  
+                             ${newDetalleIncidencia.id_incidencia},  
+                            ${newDetalleIncidencia.id_conocimiento});`;
 
   sql.query(query, (err, res) => {
     if (err) {
@@ -107,15 +99,12 @@ DetalleIncidencia.getAll = result => {
 
 DetalleIncidencia.updateById = (id, detalleIncidencia, result) => {
   sql.query(
-    'UPDATE detalle_incidencia SET fecha = ?, eliminado = ?, f_update = NOW(), u_update = ?, usuario_id_usuario = ?, incidencia_id_incidencia = ?, area_id_area = ?, conocimiento_id_conocimiento = ?  WHERE id_detalle_incidencia = ?',
+    'UPDATE detalle_incidencia SET eliminado = ?, f_update = NOW(), u_update = ?, id_incidencia = ?, id_conocimiento = ?  WHERE id_detalle_incidencia = ?',
     [
-      detalleIncidencia.fecha,
       detalleIncidencia.eliminado,
       detalleIncidencia.u_update,
-      detalleIncidencia.usuario_id_usuario,
-      detalleIncidencia.incidencia_id_incidencia,
-      detalleIncidencia.area_id_area,
-      detalleIncidencia.conocimiento_id_conocimiento,
+      detalleIncidencia.id_incidencia,
+      detalleIncidencia.id_conocimiento,
       id,
     ],
     (err, res) => {

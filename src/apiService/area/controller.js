@@ -15,7 +15,6 @@ exports.create = (req, res) => {
   const area = new Area({
     nombre: req.body.nombre,
     eliminado: req.body.eliminado,
-    estado: req.body.estado,
     u_create: req.body.u_create,
     u_update: req.body.u_update,
   });
@@ -64,7 +63,7 @@ exports.findOne = (req, res) => {
   Area.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === 'not_found') {
-        res.status(404).send({
+        res.status(204).send({
           message: `Not found Area with id ${req.params.id}.`,
         });
       } else {

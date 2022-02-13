@@ -17,10 +17,10 @@ exports.create = (req, res) => {
     descripcion: req.body.descripcion,
     fecha: req.body.fecha,
     solucion: req.body.solucion,
-    usuario: req.body.usuario,
     eliminado: req.body.eliminado,
     u_create: req.body.u_create,
     u_update: req.body.u_update,
+    id_usuario: req.body.id_usuario,
   });
 
   // validate repeated

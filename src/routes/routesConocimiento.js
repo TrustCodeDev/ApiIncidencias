@@ -41,6 +41,9 @@ const swaggerUi = require('swagger-ui-express');
  *        u_update:
  *          type: string
  *          description: usuario de actualizacion
+ *        id_usuario:
+ *          type: long
+ *          description: id de usuario
  *      required:
  *        - descripcion
  *        - fecha
@@ -48,6 +51,7 @@ const swaggerUi = require('swagger-ui-express');
  *        - usuario
  *        - eliminado
  *        - u_create
+ *        - id_usuario
  *      example:
  *        descripcion: La hora de la computadora se desconfigura regularmente
  *        fecha: 2022-01-31
@@ -58,6 +62,7 @@ const swaggerUi = require('swagger-ui-express');
  *        f_update: 2022-01-18 22:43:09
  *        u_create: rbueno
  *        u_update: admin
+ *        id_usuario: 1
  */
 
 //Create a new conocimiento

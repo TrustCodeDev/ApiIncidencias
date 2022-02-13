@@ -15,14 +15,11 @@ exports.create = (req, res) => {
 
   // Create a detalle incidencia
   const detalleIncidencia = new DetalleIncidencia({
-    fecha: req.body.fecha,
     eliminado: req.body.eliminado,
     u_create: req.body.u_create,
     u_update: req.body.u_update,
-    usuario_id_usuario: req.body.usuario_id_usuario,
-    incidencia_id_incidencia: req.body.incidencia_id_incidencia,
-    area_id_area: req.body.area_id_area,
-    conocimiento_id_conocimiento: req.body.conocimiento_id_conocimiento,
+    id_incidencia: req.body.id_incidencia,
+    id_conocimiento: req.body.id_conocimiento,
   });
 
   // area.findById(detalleIncidencia.area_id_area, (err, data) => {
